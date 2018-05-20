@@ -39,12 +39,10 @@ set(LIBRARIES
   # path to full library
   )
 
-add_subdirectory(lammps/cmake)
-
 # include service build script
 include($ENV{INCLUDEOS_PREFIX}/includeos/post.service.cmake)
-
-target_include_directories(service PRIVATE /lammps/src  /lammps/src/STUBS)
+add_subdirectory(lammps/cmake)
+target_include_directories(service PRIVATE lammps/src  lammps/src/STUBS)
 
 # Create in-memory filesystem from folder
 #diskbuilder(my_folder)
