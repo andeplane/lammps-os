@@ -42,7 +42,7 @@ set(LIBRARIES
 # include service build script
 include($ENV{INCLUDEOS_PREFIX}/includeos/post.service.cmake)
 add_subdirectory(lammps/cmake)
-target_include_directories(service PRIVATE lammps/src  lammps/src/STUBS)
-
+target_include_directories(service PRIVATE lammps/src lammps/src/STUBS)
+target_link_libraries(service PRIVATE lammps mpi_stubs)
 # Create in-memory filesystem from folder
 #diskbuilder(my_folder)
