@@ -37,16 +37,15 @@ set(PLUGINS
 # STATIC LIBRARIES:
 set(LIBRARIES
   # path to full library
-    /Users/knatten/code/lammps/build/liblammps.a
-    /Users/knatten/code/lammps/build/libmpi_stubs.a
   )
 
+add_subdirectory(lammps/cmake)
 
 # include service build script
 include($ENV{INCLUDEOS_PREFIX}/includeos/post.service.cmake)
 
-target_include_directories(service PRIVATE /Users/knatten/code/lammps/src  /Users/knatten/code/lammps/src/STUBS)
-# target_link_libraries(service /Users/knatten/code/lammps/build/liblammps.a /Users/knatten/code/lammps/build/libmpi_stubs.a)
+#target_include_directories(service PRIVATE /lammps/src  /lammps/src/STUBS)
+#target_link_libraries(service /Users/knatten/code/lammps/build/liblammps.a /Users/knatten/code/lammps/build/libmpi_stubs.a)
 
 # Create in-memory filesystem from folder
 #diskbuilder(my_folder)

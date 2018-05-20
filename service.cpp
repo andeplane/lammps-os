@@ -1,18 +1,13 @@
 #include <service>
-#include <mpi.h>
 #include <library.h>
-#include <lammps.h>
+// #include <mpi.h>
+// #include <lammps.h>
 
 using namespace LAMMPS_NS;
 
-/* extern "C" { */
-/* void _lammps_open_no_mpi(int, char**, void**); */
-/* void _lammps_commands_string(void*, char*); */
-/* } */
-
 void Service::start(const std::string& )
 {
-    LAMMPS *lol = new LAMMPS(0, nullptr,MPI_COMM_WORLD);
+    // LAMMPS *lmp = new LAMMPS(0, nullptr,MPI_COMM_WORLD);
     void *lammps;
     lammps_open_no_mpi(0, nullptr, &lammps);
     char *script = "units    lj\n \
@@ -29,5 +24,5 @@ void Service::start(const std::string& )
     thermo 10\n \
     fix        1 all nve\n \
     run        100";
-    //lammps_commands_string(lammps, script);
+    lammps_commands_string(lammps, script);
 }
