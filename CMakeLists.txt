@@ -44,8 +44,7 @@ add_subdirectory(lammps/cmake)
 # include service build script
 include($ENV{INCLUDEOS_PREFIX}/includeos/post.service.cmake)
 
-#target_include_directories(service PRIVATE /lammps/src  /lammps/src/STUBS)
-#target_link_libraries(service /Users/knatten/code/lammps/build/liblammps.a /Users/knatten/code/lammps/build/libmpi_stubs.a)
+target_include_directories(service PRIVATE /lammps/src  /lammps/src/STUBS)
 
 # Create in-memory filesystem from folder
 #diskbuilder(my_folder)
