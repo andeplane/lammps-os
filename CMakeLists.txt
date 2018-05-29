@@ -11,9 +11,13 @@ set(SERVICE_NAME "IncludeOS lammps-os")
 # Name of your service binary
 set(BINARY       "lammps-os")
 
+set(LAMMPS_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lammps/src)
+file(GLOB LIB_SOURCES ${LAMMPS_SOURCE_DIR}/*.cpp)
+
 # Source files to be linked with OS library parts to form bootable image
 set(SOURCES
   service.cpp # ...add more here
+  #${LIB_SOURCES}
   )
 
 # To add your own include paths:
@@ -34,15 +38,22 @@ set(PLUGINS
   # Use "boot --plugins ." to see other plugins
   )
 
+set(LIBRARIES /repos/lammps-os/build/lammps/cmake/liblammps.a)
 # STATIC LIBRARIES:
-set(LIBRARIES
+#set(LIBRARIES
   # path to full library
-  )
+#  )
 
 # include service build script
 include($ENV{INCLUDEOS_PREFIX}/includeos/post.service.cmake)
 add_subdirectory(lammps/cmake)
-target_include_directories(service PRIVATE lammps/src lammps/src/STUBS)
-target_link_libraries(service PRIVATE lammps mpi_stubs)
+target_include_directories(service PUBLIC lammps/src lammps/src/STUBS)
+
+#target_link_libraries(service PUBLIC lammps)
+
+# add_subdirectory(testlib)
+# target_include_directories(service PRIVATE testlib)
+# target_link_libraries(service PRIVATE testlib)
+
 # Create in-memory filesystem from folder
 #diskbuilder(my_folder)
